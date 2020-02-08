@@ -40,6 +40,9 @@ app.use(bodyParser.json());
 app.get('/', (req,res) =>
     res.send(`Node and Express Server running on port ${PORT}`)
 );
+app.get('/teste', (req,res) =>
+    res.send(`teste ${PORT}`)
+);
 
 app.use('/', clientRoutes);
 app.use('/', serviceRoutes);
