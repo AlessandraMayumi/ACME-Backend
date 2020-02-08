@@ -1,4 +1,3 @@
-const cool = require('cool-ascii-faces')
 const express = require('express')
 const path = require('path')
 const mongoose = require('mongoose')
@@ -12,9 +11,17 @@ const PORT = process.env.PORT || 5000
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
-app.get('/', (req, res) => res.render('pages/index'))
-app.get('/cool', (req, res) => res.send(cool()))
+
 app.listen(PORT, () => console.log(`Listening on ${ PORT }`))
+
+//app.get('/', (req, res) => res.render('pages/index'))
+app.get('/', (req,res) =>
+    res.send(`Node and Express Server running on port ${PORT}`)
+);
+
+app.use('/', clientRoutes);
+app.use('/', serviceRoutes);
+app.use('/', paidRoutes);
 
 // mongoose connection
 mongoose.Promise = global.Promise;
@@ -22,15 +29,3 @@ mongoose.connect('mongodb://localhost/ACMEdb', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
-
-app.use('/', clientRoutes);
-app.use('/', serviceRoutes);
-app.use('/', paidRoutes);
-
-app.get('/', (req,res) =>
-    res.send(`Node and Express Server running on port ${PORT}`)
-);
-
-app.listen(PORT,() =>
-    console.log(`Your server is running on port ${PORT}`)
-);
