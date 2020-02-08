@@ -13,12 +13,13 @@ router.use(function timeLog (req, res, next) {
 
 // getClients
 router.get('/client', (req, res) => {
-    Client.find({}, (err, client) => {
-      if (err){
-        res.send(err);
-      }
-      res.status(200);
-      res.json(client);
+  console.log('Client Route /client');
+  Client.find({}, (err, client) => {
+    if (err){
+      res.send(err);
+    }
+    res.status(200);
+    res.json(client);
   });
 });
 
