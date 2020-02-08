@@ -4,12 +4,13 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const ClientSchema = require('../../models/crm/clientModel');
 const Client = mongoose.model('Client', ClientSchema);
-
+/*
 // middleware that is specific to this router
 router.use(function timeLog (req, res, next) {
   console.log('Client Route');
   next();
 })
+*/
 
 // getClients
 router.get('/client', (req, res) => {
